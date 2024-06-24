@@ -6,7 +6,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - run: curl -X POST --data-urlencode 'payload={"channel":"#alarm_test","username":"${{ github.event.repository.name }}","text":"Starting ${{ github.workflow }} by ${{ github.actor }}.\n${{ github.event.head_commit.url }}"}' https://hooks.slack.com/services/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
+      - run: curl -X POST --data-urlencode 'payload={"channel":"#alarm_test","username":"${{ github.event.repository.name }}","text":"Starting `${{ github.workflow }}` by *${{ github.actor }}*.\n${{ github.event.head_commit.url }}"}' https://hooks.slack.com/services/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
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Prepare Actions Env
