@@ -7,13 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send notification to Slack
-        uses: slackapi/slack-github-action@v1.26.0
-        with:
-          payload: |
-            {"channel": "alarm_test", "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"}
-        env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        shell: bash
+        run: curl -X POST --data-urlencode "payload={\"channel\": \"#alarm_test\", \"username\": \"Github Notification\", \"text\": \"TEST ${{ github.event.head_commit.url }}.\"}" https://hooks.slack.com/services/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
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Prepare Actions Env
