@@ -2,6 +2,9 @@ name: Build and Upload Artifact
 runs:
   using: "composite"
   steps:
+    - name: Send a notification to Slack
+      shell: bash
+      run: curl -X POST --data-urlencode 'payload={"channel":"#alarm_test","username":"${{ github.event.repository.name }}","text":"Starting `${{ github.workflow }}` by *${{ github.actor }}* on ${{ github.ref }}. [<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.run_id }}>]"}' https://hooks.slack.com/services/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
     - name: Build
       shell: bash
       run: yarn build && yarn dist
