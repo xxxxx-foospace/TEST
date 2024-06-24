@@ -1,0 +1,16 @@
+name: Build and Upload Artifact
+runs:
+  using: "composite"
+  steps:
+    - name: Build
+      shell: bash
+      run: yarn build && yarn dist
+    - name: Upload a artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: built-${{ github.sha }}
+        retention-days: 7
+        path: |
+          .
+          !node_modules
+          !.git

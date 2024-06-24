@@ -1,0 +1,17 @@
+name: Prepare Actions Env
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 14
+    - name: Setup cache
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: node_modules
+        restore-keys: node_modules
+    - name: Install dependeicies
+      shell: bash
+      run: yarn

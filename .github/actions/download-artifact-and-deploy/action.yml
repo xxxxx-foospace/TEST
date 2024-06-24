@@ -1,0 +1,21 @@
+name: Download Artifact and Deploy
+inputs:
+  firebase_token:
+    required: true
+  firebase_project:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Download the artifact
+      uses: actions/download-artifact@v4.1.6
+      with:
+        name: built-${{ github.sha }}
+    - name: Install firebase-tools
+      shell: bash
+      run: yarn global add firebase-tools@9 --ignore-engines
+    - name: Deploy
+      env:
+        FIREBASE_TOKEN: ${{ inputs.firebase_token }}
+      shell: bash
+      run: firebase -P ${{ inputs.firebase_project }} deploy

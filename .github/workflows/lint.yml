@@ -1,0 +1,13 @@
+name: lint
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Prepare Actions Env
+        uses: ./.github/actions/prepare-actions-env
+      - run: yarn lint
