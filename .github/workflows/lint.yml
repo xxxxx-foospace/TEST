@@ -1,6 +1,15 @@
 name: lint
 
-on: push
+on: 
+  workflow_dispatch:
+    inputs:
+      abc:
+        required: true
+        description: aabbb
+        type: choice
+        options:
+          - ABC
+          - DEF
 
 jobs:
   lint:
