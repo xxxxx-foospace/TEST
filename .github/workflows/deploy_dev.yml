@@ -13,10 +13,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Prepare Actions Env
-        uses: ./.github/actions/prepare-actions-env
-      - name: Build and Upload Artifact
-        uses: ./.github/actions/build-and-upload-artifact
+ 
       
   deploy_dev:
     runs-on: ubuntu-latest
@@ -25,10 +22,4 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Prepare Actions Env
-        uses: ./.github/actions/prepare-actions-env
-      - name: Download Artifact and Deploy
-        uses: ./.github/actions/download-artifact-and-deploy
-        with:
-          firebase_token: ${{ secrets.FIREBASE_TOKEN }}
-          firebase_project: foospace-freezone-dev
+ 
