@@ -4,8 +4,7 @@ concurrency:
   group: dev
   cancel-in-progress: true
   
-on:
-  workflow_dispatch:
+on: push
 
 jobs:
   build_dev:
